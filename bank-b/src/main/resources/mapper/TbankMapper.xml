@@ -63,6 +63,7 @@
         </where>
     </update>
 
+    
     <!-- 查询 -->
     <select id="query" parameterType="com.codingapi.example.bankb.entity.TbankEntity" resultMap="TbankEntityMap">
         SELECT
