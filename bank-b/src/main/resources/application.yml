@@ -1,0 +1,26 @@
+server:
+  port: 8099
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  application:
+    name: bank-b
+    #默认consul为注册中心，如无修改，无需显示配置
+#  cloud:
+#    consul:
+#      host: consul.yxcg.cc
+#      port: 8500
+#      discovery:
+#        serviceName: bank-b #注册到consul的服务名称
+
+  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.10.101:3306/bank-b?useUnicode=true&characterEncoding=UTF-8&relaxAutoCommit=true&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: Root!!123456

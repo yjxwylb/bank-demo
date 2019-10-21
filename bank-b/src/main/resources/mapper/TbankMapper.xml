@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.codingapi.example.bankb.mapper.TbankMapper">
+    <resultMap id="TbankEntityMap" type="com.codingapi.example.bankb.entity.TbankEntity">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user" property="user" jdbcType="VARCHAR"/>
+        <result column="money" property="money" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="BaseColumn">
+	id,
+	user,
+	money
+		</sql>
+
+
+    <!-- 插入 -->
+    <insert id="save" parameterType="com.codingapi.example.bankb.entity.TbankEntity" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO t_bank
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="user != null">
+                user,
+            </if>
+            <if test="money != null">
+                money
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="user != null">
+                #{user,jdbcType=VARCHAR},
+            </if>
+            <if test="money != null">
+                #{money,jdbcType=INTEGER}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.codingapi.example.bankb.entity.TbankEntity">
+        UPDATE t_bank
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="user != null">
+                user = #{user},
+            </if>
+            <if test="money != null">
+                money = money+#{money}
+            </if>
+        </set>
+        <where>
+            <if test="user!=null and user!=''">
+                and user = #{user}
+            </if>
+        </where>
+    </update>
+
+    <!-- 查询 -->
+    <select id="query" parameterType="com.codingapi.example.bankb.entity.TbankEntity" resultMap="TbankEntityMap">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM t_bank
+        <where>
+            <if test="id!=null and id!=''">
+                and id = #{id}
+            </if>
+            <if test="user!=null and user!=''">
+                and user = #{user}
+            </if>
+            <if test="money!=null and money!=''">
+                and money = #{money}
+            </if>
+        </where>
+    </select>
+
+</mapper>
