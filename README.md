@@ -15,5 +15,6 @@ CREATE TABLE `t_bank` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 3.项目中把mysql数据库连接换成自己的。
+4.测试
 
 
